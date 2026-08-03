@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+    
+    <!-- Bootstrap CDN Link -->
+    
+    
+    <!-- Tumhara CSS -->
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+    <h1>Department List</h1>
+    
+    <!-- Success Message -->
+    <div th:if="${message}" >
+        <p th:text="${message}"></p>
+    </div>
+    
+    <!-- Error Message -->
+    <div th:if="${errorMessage}" >
+        <p th:text="${errorMessage}"></p>
+    </div>
+    
+    <!-- Add New Button -->
+    <a class="button" th:href="@{/departments/add}">Add New Department</a>
+    
+    <!-- Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="dept : ${departments}">
+                <td th:text="${dept.id}"></td>
+                <td th:text="${dept.name}"></td>
+                <td>
+                    <a th:href="@{/departments/edit/{id}(id=${dept.id})}">Edit</a> | 
+                    <a th:href="@{/departments/delete/{id}(id=${dept.id})}" 
+                       onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <br>
+    <a class="button"href="/departments/add">Back to Home</a>
+    
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+    
+    <!-- Bootstrap CDN Link -->
+    
+    
+    <!-- Tumhara CSS -->
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+    <h1>Department Form</h1>
+    
+    <form th:action="@{/departments/save}" th:object="${department}" method="post">
+        
+        <input type="hidden" th:field="*{id}" />
+        
+        <div>
+            <label>Name: </label>
+            <input type="text" th:field="*{name}" required/>
+        </div>
+        
+        <div>
+            <button type="submit">Save</button>
+        </div>
+        
+    </form>
+    
+    <a class="button" href="/departments">Back to Department List</a>
+    
+</body>
+</html>

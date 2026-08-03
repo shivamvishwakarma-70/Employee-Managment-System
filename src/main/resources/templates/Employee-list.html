@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Form</title>
+ 
+    
+    <!-- Tumhara CSS -->
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+    <h1>Employee List</h1>
+    
+    <table class="employee-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+         	<th>Image</th>
+            <th>Salary</th> <!-- 6th me Salary -->
+            <th>Department</th> <!-- 7th me Department -->
+            <th>Actions</th> <!-- 8th me Actions -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.email}"></td>
+            
+            <td><img  th:src="${employee.imageUrl}" alt="Employee Image"
+            width = "50" height="50"style="border-radius:50% object-fit:cover;
+            border:1px solid #ddd;"/>
+            </td>
+            
+            <td th:text="${employee.salary}"></td> <!-- Salary -->
+            <td th:text="${employee.department.name}"></td> <!-- Department -->
+            
+            <td> <!-- Actions -->
+                <a th:href="@{/edit/{id}(id=${employee.id})}" >Edit</a>
+                <a th:href="@{/delete/{id}(id=${employee.id})}" >Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+    
+    <a href="add">Add New Employee</a>
+    
+</body>
+</html>
